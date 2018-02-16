@@ -71,3 +71,5 @@ public class IntroToFileIO {
 		}
 	}
 }
+
+ //Copyright 2018 Ugandan Knuckles and Sanic
