@@ -2,6 +2,9 @@ package intro_to_file_io;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -52,6 +55,13 @@ if(buttonPressed == addTask) {
 	list.add(task);
 	
 }
+else if(buttonPressed == removeTask) {
+	String numtoString= JOptionPane.showInputDialog("Which number task would you like to remove?");
+	int arraylistnum = Integer.parseInt(numtoString);
+    int actualarraylistnum = arraylistnum-=1;
+    list.remove(actualarraylistnum);
+    
+}
 else if(buttonPressed == save) {
 	try {
 		FileWriter fw = new FileWriter("src/intro_to_file_io/taskList.txt");
@@ -64,5 +74,29 @@ else if(buttonPressed == save) {
 		e1.printStackTrace();
 	}
 }
+else if(buttonPressed == load) {
+	String yed="";
+	
+	list.clear();
+	try {
+	BufferedReader br = new BufferedReader(new FileReader("src/intro_to_file_io/taskList.txt"));
+	
+		String line = br.readLine();
+	while(line!=null) {
+		list.add(line);
+		line = br.readLine();
+	}
+} catch (FileNotFoundException e1) {
+	// TODO Auto-generated catch block
+	e1.printStackTrace();
+} catch (IOException e1) {
+	// TODO Auto-generated catch block
+	e1.printStackTrace();
 }
+	for(String s: list) {
+		yed= yed + s;
+		JOptionPane.showMessageDialog(null, "\n"+yed);
+	}
+	
 }
+}}
